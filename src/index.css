@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(41, 41, 41);
+}
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Add some global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
