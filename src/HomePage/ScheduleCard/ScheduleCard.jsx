@@ -5,11 +5,13 @@ import deleteButton from './Images/deleteButton.png';
 
 export default function ScheduleCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [tasks, setTasks] = useState(["Sample Task"]);
+    const [tasks, setTasks] = useState(["Sample Task at 12:00 AM"]);
     const [newTaskName, setNewTaskName] = useState("");
     const [newTaskTime, setNewTaskTime] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [isAMButtonDisabled, setIsAMButtonDisabled] = useState (false);
+    const [isPMButtonDisabled, setIsPMButtonDisabled] = useState (false);
     
     const getNextDays = () => {
         const days = [];
@@ -46,33 +48,50 @@ export default function ScheduleCard() {
 
      function handleTimeChange(event) {
         const value = event.target.value;
-        const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        const timeRegex = /^(0?[1-9]|1[0-2]):([0-5][0-9])?$/;
         
-        if (value === '' || value.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3])(:[0-5]?[0-9]?)?$/)) {
+        if (value === '' || value.match(/^(0?[1-9]|1[0-2])(:[0-5]?[0-9]?)?$/)) {
             setNewTaskTime(value);
         }
     }
 
     function addTask() {
-        const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
+        if (!isAMButtonDisabled && !isPMButtonDisabled) {
+            alert("Please select either AM or PM");
+            return;
+        }
         if (newTaskName.trim() !== "" && timeRegex.test(newTaskTime)) {
-            const newTask = `${newTaskName} at ${newTaskTime}`;
+            const period = isAMButtonDisabled ? "AM" : "PM";
+            const newTask = `${newTaskName} at ${newTaskTime} ${period}`;
             setTasks(currentTasks => {
                 const updatedTasks = [...currentTasks, newTask];
                 return updatedTasks.sort((a, b) => {
-                    const timeA = a.split(' at ')[1];
-                    const timeB = b.split(' at ')[1];
+                    const [timeA, periodA] = a.split(' at ')[1].split(' ');
+                    const [timeB, periodB] = b.split(' at ')[1].split(' ');
+                    
                     const [hoursA, minutesA] = timeA.split(':').map(Number);
-                    const [hoursB, minutesB] = timeB.split(':').map(Number); 
-                    const totalMinutesA = hoursA * 60 + minutesA;
-                    const totalMinutesB = hoursB * 60 + minutesB;
+                    const [hoursB, minutesB] = timeB.split(':').map(Number);
+                    
+                    const totalMinutesA = (
+                        ((periodA === 'PM' && hoursA !== 12) ? hoursA + 12 : 
+                         (periodA === 'AM' && hoursA === 12) ? 0 : hoursA) * 60
+                    ) + minutesA;
+                    
+                    const totalMinutesB = (
+                        ((periodB === 'PM' && hoursB !== 12) ? hoursB + 12 : 
+                         (periodB === 'AM' && hoursB === 12) ? 0 : hoursB) * 60
+                    ) + minutesB;
+                    
                     return totalMinutesA - totalMinutesB;
                 });
             });
             setNewTaskName("");
             setNewTaskTime("");
+            setIsAMButtonDisabled(false);
+            setIsPMButtonDisabled(false);
         } else {
-            alert("Please enter a valid task name and time (HH:MM)");
+            alert("Please enter a valid task name and time (1:00-12:59) and select AM/PM");
         }
     }
 
@@ -84,6 +103,18 @@ export default function ScheduleCard() {
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
+
+    const toggleAMButton = () => {
+        setIsAMButtonDisabled(true);
+        setIsPMButtonDisabled(false);
+    }
+
+    const togglePMButton = () => {
+        setIsPMButtonDisabled(true);
+        setIsAMButtonDisabled(false);
+    }
+
+
 
     return (
         <div className={styles.card}>
@@ -121,18 +152,34 @@ export default function ScheduleCard() {
                             placeholder="Task name"
                             value={newTaskName} 
                             onChange={handleInputChange}
-                            className={styles.modalInput} 
+                            className={styles.textInput} 
                             maxLength={50} 
                         />
-                        <input 
-                            type="text" 
-                            placeholder="Time Ex: 11:25"
-                            value={newTaskTime} 
-                            onChange={handleTimeChange}
-                            className={styles.modalInput}
-                            pattern="[0-9]{2}:[0-9]{2}"
+                        <div className={styles.timeLine}>
+                            <input 
+                                type="text" 
+                                placeholder="Time Ex: 11:25"
+                                value={newTaskTime} 
+                                onChange={handleTimeChange}
+                                className={styles.time}
+                                pattern="[0-9]{2}:[0-9]{2}"
                                 maxLength={5}
-                        />
+                            />
+                            <button
+                                disabled={isAMButtonDisabled} 
+                                className = {styles.AMButton}
+                                onClick = {toggleAMButton}
+                            >
+                                A.M
+                            </button>
+                            <button
+                                disabled={isPMButtonDisabled} 
+                                className = {styles.PMButton}
+                                onClick = {togglePMButton}
+                            >
+                                P.M.
+                            </button>
+                        </div>
                         <div className={styles.dropdownContainer}>
                             <button 
                                 onClick={toggleDropdown}
