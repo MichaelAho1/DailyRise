@@ -12,6 +12,17 @@ export default function ScheduleCard() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isAMButtonDisabled, setIsAMButtonDisabled] = useState (false);
     const [isPMButtonDisabled, setIsPMButtonDisabled] = useState (false);
+    const [taskDay, setTaskDay] = useState("");
+    const [taskMonth, setTaskMonth] = useState("");
+    const [weekDay, setWeekDay] = useState("");
+
+    // USE THIS WHEN U DO THE BACKEND_______________________________________________________________________________________________
+    const addTaskDay = () => {
+        const date = selectedOption.split(" ");
+        setTaskDay(date[2]);
+        setTaskMonth(date[1]);
+        setWeekDay(date[0].replace(/,/g, ""));
+    }
     
     const getNextDays = () => {
         const days = [];
@@ -56,6 +67,7 @@ export default function ScheduleCard() {
     }
 
     function addTask() {
+        addTaskDay();
         const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
         if (!isAMButtonDisabled && !isPMButtonDisabled) {
             alert("Please select either AM or PM");
@@ -69,20 +81,20 @@ export default function ScheduleCard() {
                 return updatedTasks.sort((a, b) => {
                     const [timeA, periodA] = a.split(' at ')[1].split(' ');
                     const [timeB, periodB] = b.split(' at ')[1].split(' ');
-                    
+                        
                     const [hoursA, minutesA] = timeA.split(':').map(Number);
                     const [hoursB, minutesB] = timeB.split(':').map(Number);
-                    
+                        
                     const totalMinutesA = (
                         ((periodA === 'PM' && hoursA !== 12) ? hoursA + 12 : 
-                         (periodA === 'AM' && hoursA === 12) ? 0 : hoursA) * 60
+                        (periodA === 'AM' && hoursA === 12) ? 0 : hoursA) * 60
                     ) + minutesA;
-                    
+                        
                     const totalMinutesB = (
                         ((periodB === 'PM' && hoursB !== 12) ? hoursB + 12 : 
-                         (periodB === 'AM' && hoursB === 12) ? 0 : hoursB) * 60
+                        (periodB === 'AM' && hoursB === 12) ? 0 : hoursB) * 60
                     ) + minutesB;
-                    
+                        
                     return totalMinutesA - totalMinutesB;
                 });
             });
@@ -91,7 +103,7 @@ export default function ScheduleCard() {
             setIsAMButtonDisabled(false);
             setIsPMButtonDisabled(false);
         } else {
-            alert("Please enter a valid task name and time (1:00-12:59) and select AM/PM");
+            alert("Please enter a valid task name.");
         }
     }
 
