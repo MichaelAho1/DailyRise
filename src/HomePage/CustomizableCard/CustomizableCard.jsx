@@ -2,6 +2,28 @@ import styles from './CustomizableCard.module.css'
 import { useState, useEffect } from 'react'
 
 function CustomizableCard() {
+    //Change to Backend__________________________________________
+    let verses = [
+        "Isaiah 53:5", "John 1:14",
+        "John 14:6", "Romans 3:23",
+        "Romans 5:12", "Romans 6:23",
+        "John 19:11", "Romans 10:9",
+        "John 14:26", "Matthew 25:13",
+        "Revelation 1:7", "Isaiah 1:18",
+        "Matthew 6:14", "Mark 11:25",
+        "Matthew 4:4", "Exodus 15:2",
+        "Psalm 150:6", "Philipians 4:4",
+        "John 14:6", "Romans 3:23",
+        "Romans 8:28", "Philippians 4:13",
+        "Jeremiah 29:11", "Isaiah 40:31",
+        "Matthew 11:28", "Psalm 46:1",
+    ]
+    let verseOfTheDay = verses[Math.floor(Math.random() * verses.length)].split(" ");
+    const [verse, setVerse] = useState("");
+    const bookName = verseOfTheDay[0].toLowerCase();
+    const chapterNumber = verseOfTheDay[1].split(":")[0];
+    const verseNumber = verseOfTheDay[1].split(":")[1];
+
     const [stockData, setStockData] = useState({
         stockName: '',
         todayClose: 0,
@@ -44,11 +66,9 @@ function CustomizableCard() {
         }
         getData();
     }, []);
-
-    const [verse, setVerse] = useState("");
     useEffect(() => {
         fetch(
-            "https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/john/chapters/3/verses/16.json"
+            `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-asv/books/${bookName}/chapters/${chapterNumber}/verses/${verseNumber}.json`
         )
             .then((response) => response.json())
             .then((data) => setVerse(data.text))
