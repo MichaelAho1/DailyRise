@@ -2,7 +2,7 @@
     max-width: 600px;
     min-height: 300px;
     width: 90%;
-    border: 1px solid rgb(173, 172, 172);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     box-sizing: 50px 50px 50px rgb(185, 183, 183, 0.1);
     padding: 30px;
@@ -10,7 +10,7 @@
     text-align: center;
     justify-self: center;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.048);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 } 
 .day {
@@ -94,7 +94,7 @@
 
 .modal {
     position: relative;
-    background: rgb(77, 76, 76);
+    background: rgb(43, 42, 42);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -192,7 +192,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(94, 93, 93, 0.185);
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
