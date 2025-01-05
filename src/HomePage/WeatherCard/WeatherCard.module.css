@@ -35,15 +35,18 @@
 .summary{
     margin-top: 5px;
     font-family: Arial;
-    color: rgb(161, 159, 159);
+    color:  #ffffff;
     margin-bottom: 0;
     font-size: 1.12rem;
 }
 
 .clothingBoxes {
-display: grid;
+    display: grid;
+    align-items: center;
+    align-self: center;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    margin-left: 45px;
     margin-top: 20px;
 }
 
@@ -66,5 +69,5 @@ display: grid;
     font-size: 0.84rem;
 }
 .clothingBox:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }

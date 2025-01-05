@@ -71,7 +71,7 @@ function WeatherCard() {
 
     return(
         <div className={styles.card}>
-            <h2 className={styles.time}>{add.city}, {time.toLocaleTimeString([], { 
+            <h2 className={styles.time}>{add.city} {time.toLocaleTimeString([], { 
                 hour: 'numeric', 
                 minute: '2-digit' 
             })}</h2>
