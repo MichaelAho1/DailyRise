@@ -5,7 +5,7 @@ import deleteButton from './Images/deleteButton.png';
 
 export default function ScheduleCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [tasks, setTasks] = useState(["Sample Task at 12:00 AM"]);
+    const [tasks, setTasks] = useState(["Sample Task at 12:00 AM (delete)"]);
     const [newTaskName, setNewTaskName] = useState("");
     const [newTaskTime, setNewTaskTime] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -197,7 +197,7 @@ export default function ScheduleCard() {
                                 onClick={toggleDropdown}
                                 className={styles.dropdownButton}
                             >
-                                {selectedOption || "Select an option"}
+                                {selectedOption || "Select Day"}
                             </button>
                             {isOpen && (
                                 <ul className={styles.dropdownMenu}>
@@ -215,8 +215,7 @@ export default function ScheduleCard() {
                         </div>
                         <button 
                             onClick={addTask} 
-                            className={styles.addTaskButton}
-                        >
+                            className={styles.addTaskButton}>
                             Add Task
                         </button>
                     </div>
