@@ -19,7 +19,7 @@ function CustomizableCard() {
         "Matthew 11:28", "Psalm 46:1",
     ]
     let verseOfTheDay = verses[Math.floor(Math.random() * verses.length)].split(" ");
-    const [verse, setVerse] = useState("");
+    const [verse, setVerse] = useState("I can endure all these things through the power of the one who gives me strength");
     const bookName = verseOfTheDay[0].toLowerCase();
     const chapterNumber = verseOfTheDay[1].split(":")[0];
     const verseNumber = verseOfTheDay[1].split(":")[1];
