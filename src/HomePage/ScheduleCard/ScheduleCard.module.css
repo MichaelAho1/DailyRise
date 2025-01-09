@@ -12,6 +12,8 @@
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.048);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    padding-bottom: 80px;
 } 
 .day {
     color: #ffffff;
@@ -56,9 +58,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
 }
 
 .footerButton {
@@ -310,4 +315,6 @@
 }
  
  
+
+
 
