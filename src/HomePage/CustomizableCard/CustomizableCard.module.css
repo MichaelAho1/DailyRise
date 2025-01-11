@@ -1,16 +1,15 @@
 .card {
     max-width: 600px;
     width: 90%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     padding: 25px;
     margin: 10px;
     margin-bottom: 50px;
     text-align: center;
     justify-self: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(8, 8, 8, 0.048);
+    box-shadow: 0 8px 32px 0 rgba(4, 12, 117, 0.37);
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.048);
     z-index: 1000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
