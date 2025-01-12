@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styles from './ScheduleCard.module.css';
 import { getCurrentDateMonth, getCurrentDay, getCurrentDateDay } from '../Date/Date.jsx';
-import deleteButton from './Images/deleteButton.png';
 
 export default function ScheduleCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -130,38 +129,34 @@ export default function ScheduleCard() {
 
     return (
         <div className={styles.card}>
-            <h2 className={styles.day}>Schedule For {getCurrentDay()}</h2>
+            <h2 className={styles.day}>📅 Schedule For {getCurrentDay()}</h2>
             <div className={styles.listContainer}>
                 <ol>
                     {tasks.map((task, index) => 
                         <li key={index}>
-                            <span className="text">{task}</span>
+                            <span className="text">📝 {task}</span>
                             <button
-                               className={styles.deleteButton}
-                               onClick={() => deleteTask(index)}>
-                               <img 
-                                   src={deleteButton} 
-                                   alt="Delete" 
-                                   className={styles.deleteIcon}
-                               />
-                           </button>
+                                className={styles.deleteButton}
+                                onClick={() => deleteTask(index)}>
+                                🗑️
+                            </button>
                         </li>
                     )}
                 </ol>
             </div>
             <div className={styles.footer}>
-                <p className={styles.footerText}>Earliest Task tomorrow: 9:15 A.M</p>
+                <p className={styles.footerText}>⏰ Earliest Task tomorrow: 9:15 A.M</p>
                 <button className={styles.footerButton} onClick={toggleModal}>+</button>
             </div>
 
             {isModalOpen && (
                 <div className={styles.modalBackdrop} onClick={toggleModal}>
                     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                        <button onClick={toggleModal} className={styles.modalButton}>x</button>
-                        <h3>Add a New Task</h3>
+                        <button onClick={toggleModal} className={styles.modalButton}>×</button>
+                        <h3>✨ Add a New Task</h3>
                         <input 
                             type="text" 
-                            placeholder="Task name"
+                            placeholder="✏️ Task name"
                             value={newTaskName} 
                             onChange={handleInputChange}
                             className={styles.textInput} 
@@ -170,7 +165,7 @@ export default function ScheduleCard() {
                         <div className={styles.timeLine}>
                             <input 
                                 type="text" 
-                                placeholder="Time Ex: 11:25"
+                                placeholder="⏰ Time"
                                 value={newTaskTime} 
                                 onChange={handleTimeChange}
                                 className={styles.time}
@@ -179,17 +174,17 @@ export default function ScheduleCard() {
                             />
                             <button
                                 disabled={isAMButtonDisabled} 
-                                className = {styles.AMButton}
-                                onClick = {toggleAMButton}
+                                className={styles.AMButton}
+                                onClick={toggleAMButton}
                             >
-                                A.M
+                                🌅 AM
                             </button>
                             <button
                                 disabled={isPMButtonDisabled} 
-                                className = {styles.PMButton}
-                                onClick = {togglePMButton}
+                                className={styles.PMButton}
+                                onClick={togglePMButton}
                             >
-                                P.M.
+                                🌙 PM
                             </button>
                         </div>
                         <div className={styles.dropdownContainer}>
@@ -197,7 +192,7 @@ export default function ScheduleCard() {
                                 onClick={toggleDropdown}
                                 className={styles.dropdownButton}
                             >
-                                {selectedOption || "Select Day"}
+                                📅 {selectedOption || "Select Day"}
                             </button>
                             {isOpen && (
                                 <ul className={styles.dropdownMenu}>
@@ -207,7 +202,7 @@ export default function ScheduleCard() {
                                             onClick={() => handleOptionClick(option)}
                                             className={styles.dropdownItem}
                                         >
-                                            {option}
+                                            📅 {option}
                                         </li>
                                     ))}
                                 </ul>
@@ -215,8 +210,9 @@ export default function ScheduleCard() {
                         </div>
                         <button 
                             onClick={addTask} 
-                            className={styles.addTaskButton}>
-                            Add Task
+                            className={styles.addTaskButton}
+                        >
+                            ✅ Add Task
                         </button>
                     </div>
                 </div>

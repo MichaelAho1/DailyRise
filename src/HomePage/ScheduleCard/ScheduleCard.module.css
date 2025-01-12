@@ -3,27 +3,28 @@
     min-height: 300px;
     width: 90%;
     border-radius: 10px;
-    box-sizing: 50px 50px 50px rgb(185, 183, 183, 0.1);
     padding: 30px;
     margin: 10px;
     text-align: center;
     justify-self: center;
     backdrop-filter: blur(10px);
-    background: rgba(8, 8, 8, 0.048);
-    box-shadow: 0 8px 32px 0 rgba(4, 12, 117, 0.37);
+    background: rgba(20, 20, 20, 0.95);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
     position: relative;
     padding-bottom: 80px;
+    border: 1px solid rgba(255, 77, 109, 0.1);
 } 
 .day {
-    color: #ffffff;
+    color: #ff4d6d;
     font-size: 2rem;
     margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 .list {
     justify-self: left;
     font-size: 1.12rem;
     font-family: Arial;
-    color:  #ffffff;
+    color: #cccccc;
     margin: 10px;
 }
 .listItem {
@@ -50,7 +51,7 @@
     justify-self: left;
     font-size: 0.84rem;
     font-family: Arial;
-    color:  #ffffff;
+    color: #999999;
 }
 
 .footer {
@@ -58,7 +59,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 77, 109, 0.2);
     position: absolute;
     bottom: 20px;
     left: 30px;
@@ -72,15 +73,17 @@
     padding: 2px 2px;
     border-radius: 100px;
     border: none;
-    background-color: #007bff;
+    background-color: #ff4d6d;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 
 .footerButton:hover {
-    background-color: #0056b3;
+    background-color: #ff3357;
     transform: rotate(90deg);
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
 }
 
 .modalBackdrop {
@@ -98,12 +101,13 @@
 
 .modal {
     position: relative;
-    background: rgb(43, 42, 42);
+    background: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(255, 77, 109, 0.2);
     width: 300px;
     text-align: center;
+    border: 1px solid rgba(255, 77, 109, 0.2);
 }
 
 .textInput {
@@ -112,8 +116,8 @@
     margin: 10px 0;
     border: 1px solid #333333;
     border-radius: 5px;
-    background-color: #464545; 
-    color: white; 
+    background-color: #222222;
+    color: white;
 }
 
 .time {
@@ -123,8 +127,8 @@
     margin: 0;
     border: 1px solid #333333;
     border-radius: 5px;
-    background-color: #464545; 
-    color: white; 
+    background-color: #222222;
+    color: white;
 }
 
 .timeLine {
@@ -137,18 +141,18 @@
     padding: 10px 12px;
     border: 1px solid #333333;
     border-radius: 5px;
-    background-color: #242323; 
-    color: rgb(94, 90, 90);
+    background-color: #222222;
+    color: #999999;
     cursor: pointer;
     transition: background-color 0.2s ease;
     margin-left: 5px;
 }
 
 .AMButton:disabled, .PMButton:disabled {
-    background-color: #5c5b5b;
-    color: rgb(255, 254, 254);
-    cursor: not-allowed;
-    border-color: #272626;
+    background-color: #ff4d6d;
+    color: white;
+    border-color: #ff3357;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 
 .modalInput::placeholder {
@@ -163,8 +167,8 @@
     width: 32px;
     height: 32px;
     font-size: 1.5rem;
-    background: rgb(77, 76, 76);
-    color: rgb(0, 0, 0);
+    background: #ff4d6d;
+    color: white;
     border: none;
     border-radius: 50%; 
     cursor: pointer;
@@ -174,10 +178,20 @@
 }
 
 .addTaskButton {
-    background-color: #818181;
-    padding: 5px;
+    background-color: #ff4d6d;
+    color: white;
+    padding: 8px 15px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+.addTaskButton:hover {
+    background-color: #ff3357;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
 }
 
 .listContainer {
@@ -196,55 +210,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(94, 93, 93, 0.185);
+    background: #1a1a1a;
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
     transition: all 0.3s ease;
+    border: 1px solid #222222;
 }
 
 .listContainer li:hover {
     transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.2);
+    background: #222222;
+    border-color: #ff4d6d;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.1);
 }
 
 .listContainer .text {
-    color: white;
+    color: #cccccc;
     font-size: 1.1rem;
     flex-grow: 1;
-}
-
-.listContainer .delete-button {
-    background: rgba(255, 0, 0, 0.2);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: 10px;
-}
-
-.listContainer .delete-button:hover {
-    background: rgba(255, 0, 0, 0.4);
-}
-
-.listContainer::-webkit-scrollbar {
-    width: 8px;
-}
-
-.listContainer::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-.listContainer::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-}
-
-.listContainer::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
 }
 
 .deleteButton {
@@ -256,20 +240,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #999999;
+    font-size: 1.2rem;
 }
- .deleteIcon {
-    width: 25px;  
-    height: 25px;  
-    transition: transform 0.2s ease;
- }
- .deleteButton:hover .deleteIcon {
-    transform: scale(1.1);
- }
- .deleteButton:active .deleteIcon {
-    transform: scale(0.95);
- }
 
- .dropdownContainer {
+.deleteButton:hover {
+    transform: scale(1.1);
+    color: #ff4d6d;
+}
+
+.deleteButton:active .deleteIcon {
+    transform: scale(0.95);
+}
+
+.dropdownContainer {
     margin: 5px;
     position: relative;
     width: 100%;
@@ -278,17 +262,18 @@
  .dropdownButton {
     width: 100%;
     padding: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #222222;
+    border: 1px solid #333333;
     border-radius: 5px;
-    color: white;
+    color: #cccccc;
     cursor: pointer;
     text-align: left;
     transition: all 0.3s ease;
 }
  
  .dropdownButton:hover {
-    background: rgba(255, 255, 255, 0.2);
+    border-color: #ff4d6d;
+    background: #2a2a2a;
 }
  
  .dropdownMenu {
@@ -296,8 +281,8 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: rgb(77, 76, 76);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #1a1a1a;
+    border: 1px solid #333333;
     border-radius: 5px;
     padding: 0;
     list-style: none;
@@ -307,10 +292,15 @@
 }
  
  .dropdownItem {
-    padding: 2px;
-    color: white;
+    padding: 8px 12px;
+    color: #cccccc;
     cursor: pointer;
     transition: background 0.2s ease;
+}
+ 
+ .dropdownItem:hover {
+    background: #222222;
+    color: #ff4d6d;
 }
  
  

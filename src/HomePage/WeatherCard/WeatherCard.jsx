@@ -1,10 +1,4 @@
 import styles from './WeatherCard.module.css'
-import BlueHoodie from './images/BlueHoodie.png'
-import Coat from './images/Coat.png'
-import HeavySweatPants from './images/HeavySweatPants.png'
-import LongSleeveShirt from './images/LongSleeveShirt.png'
-import Shirt from './images/Shirt.png'
-import Shorts from './images/Shorts.png'
 import React, { useEffect, useState } from "react";
 
 function WeatherCard() {
@@ -17,25 +11,43 @@ function WeatherCard() {
 
     const getClothingSuggestions = (temp, weather) => {
         let suggestions = [];
+        
+        // Bottom clothing
         if (temp < 70) {
-            suggestions.push(HeavySweatPants); 
+            suggestions.push("👖 Pants");
         } else {
-            suggestions.push(Shorts); 
+            suggestions.push("🩳 Shorts");
         }
+
+        // Top clothing
         if (temp < 45) {
-            suggestions.push(Coat); 
-            suggestions.push(LongSleeveShirt);
+            suggestions.push("🧥 Heavy Coat");
+            suggestions.push("👕 Long Sleeve Shirt");
         } else if (temp < 60) {
-            suggestions.push(BlueHoodie); 
+            suggestions.push("🧥 Light Jacket");
         } else if (temp < 75) {
-            suggestions.push(LongSleeveShirt); 
+            suggestions.push("👕 Long Sleeve Shirt");
         } else {
-            suggestions.push(Shirt);
+            suggestions.push("👕 T-Shirt");
         }
+
+        // Weather specific suggestions
         if (weather?.toLowerCase().includes('rain')) {
-            suggestions.push(BlueHoodie); 
+            suggestions.push("☔ Rain Jacket");
         }
+
         return suggestions;
+    }
+
+    const getWeatherEmoji = (weather) => {
+        const weatherLower = weather?.toLowerCase();
+        if (weatherLower?.includes('rain')) return '🌧️';
+        if (weatherLower?.includes('cloud')) return '☁️';
+        if (weatherLower?.includes('clear')) return '';
+        if (weatherLower?.includes('snow')) return '❄️';
+        if (weatherLower?.includes('thunder')) return '⛈️';
+        if (weatherLower?.includes('mist') || weatherLower?.includes('fog')) return '🌫️';
+        return '🌡️';
     }
 
     useEffect(()=>{
@@ -71,19 +83,23 @@ function WeatherCard() {
 
     return(
         <div className={styles.card}>
-            <h2 className={styles.time}>{add.city} {time.toLocaleTimeString([], { 
+            <h2 className={styles.time}>📍 {add.city} {time.toLocaleTimeString([], { 
                 hour: 'numeric', 
                 minute: '2-digit' 
             })}</h2>
             <h2 className={styles.temp}>
-                {temp}°F {weatherData && weatherData.weather[0].main}
+                {temp}°F {weatherData && (
+                    <>
+                        {getWeatherEmoji(weatherData.weather[0].main)} {weatherData.weather[0].main}
+                    </>
+                )}
             </h2>
             <h3 className={styles.summary}>Suggested Clothing:</h3>
-            <div className={styles.clothingBoxes}>
-                {clothingSuggestions.map((clothing, index) => (
-                    <div key={index} className={styles.clothingBox}>
-                        <img src={clothing} alt="Clothing item" className={styles.clothingImage} />
-                    </div>
+            <div className={styles.suggestions}>
+                {clothingSuggestions.map((item, index) => (
+                    <span key={index} className={styles.suggestionItem}>
+                        {item}
+                    </span>
                 ))}
             </div>
         </div>

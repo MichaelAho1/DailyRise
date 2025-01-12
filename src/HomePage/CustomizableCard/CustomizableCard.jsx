@@ -66,6 +66,7 @@ function CustomizableCard() {
         }
         getData();
     }, []);
+
     useEffect(() => {
         fetch(
             `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-asv/books/${bookName}/chapters/${chapterNumber}/verses/${verseNumber}.json`
@@ -75,22 +76,20 @@ function CustomizableCard() {
             .catch((error) => console.error("Error fetching verse:", error));
     }, []); 
 
-
     return (
         <div className={styles.card}>
-            <h1>S&P 500</h1>
+            <h1>📊 S&P 500</h1>
             <h2 className={styles.stock}>
-                    <span className={stockData.percentChange < 0 ? styles.negative : styles.positive}>
-                    {stockData.percentChange}% 
-                </span> | {stockData.todayClose.toFixed(2)}$
+                <span className={stockData.percentChange < 0 ? styles.negative : styles.positive}>
+                    {stockData.percentChange}%
+                </span> | ${stockData.todayClose.toFixed(2)}
             </h2>
-            <h1 className={styles.header}>Daily Bible Verse</h1>
+            <h1 className={styles.header}>📖 Daily Bible Verse</h1>
             <h3 className={styles.quote}>
                 "{verse}"
             </h3>
         </div>
     );
-    
 }
 
 export default CustomizableCard
