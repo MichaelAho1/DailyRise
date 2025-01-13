@@ -10,8 +10,7 @@
 }
 .home, .settings, .calender {
     padding: 10px 20px;
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: #111111;
     cursor: pointer;
     border: none;
 }
