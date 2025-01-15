@@ -66,13 +66,21 @@ export default function ScheduleCard() {
     }
 
     function addTask() {
+        if(selectedOption == null) {
+            alert("Please select a Date.");
+            return;
+        }
         addTaskDay();
         const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
         if (!isAMButtonDisabled && !isPMButtonDisabled) {
-            alert("Please select either AM or PM");
+            alert("Please select either AM or PM.");
             return;
         }
-        if (newTaskName.trim() !== "" && timeRegex.test(newTaskTime)) {
+        if(newTaskName == null || newTaskName.trim() == "") {
+            alert("Please enter a name for the task.");
+            return;
+        } 
+        if (timeRegex.test(newTaskTime)) {
             const period = isAMButtonDisabled ? "AM" : "PM";
             const newTask = `${newTaskName} at ${newTaskTime} ${period}`;
             setTasks(currentTasks => {
@@ -102,7 +110,7 @@ export default function ScheduleCard() {
             setIsAMButtonDisabled(false);
             setIsPMButtonDisabled(false);
         } else {
-            alert("Please enter a valid task name.");
+            alert("Please enter a valid task time. (Ex. 12:35)");
         }
     }
 
@@ -192,7 +200,7 @@ export default function ScheduleCard() {
                                 onClick={toggleDropdown}
                                 className={styles.dropdownButton}
                             >
-                                📅 {selectedOption || "Select Day"}
+                                📅 {selectedOption || "Select Date"}
                             </button>
                             {isOpen && (
                                 <ul className={styles.dropdownMenu}>

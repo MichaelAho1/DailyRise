@@ -73,12 +73,11 @@ function CustomizableCard() {
         )
             .then((response) => response.json())
             .then((data) => setVerse(data.text))
-            .catch((error) => console.error("Error fetching verse:", error));
     }, []); 
 
     return (
         <div className={styles.card}>
-            <h1>📊 S&P 500</h1>
+            <h1>📊 SPY 500</h1>
             <h2 className={styles.stock}>
                 <span className={stockData.percentChange < 0 ? styles.negative : styles.positive}>
                     {stockData.percentChange}%
