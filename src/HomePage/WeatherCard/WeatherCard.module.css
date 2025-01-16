@@ -16,7 +16,7 @@
 .time {
     font-family: Arial;
     margin: 0;
-    color: #cccccc;
+    color: #f8eeee;
     font-size: 1.4rem;
     margin-bottom: 0;
 }
@@ -33,7 +33,7 @@
 .summary {
     margin-top: 15px;
     font-family: Arial;
-    color: #999999;
+    color: #dad2d2;
     font-size: 1.2rem;
 }
 
