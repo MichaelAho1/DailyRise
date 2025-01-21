@@ -10,19 +10,19 @@ function Selectors() {
                 className={styles.home}
                 onClick={() => navigate('/home')} 
             >
-                🏚️
+                🏚️ Home
             </button>
             <button 
                 className={styles.calender}
                 onClick={() => navigate('/calender')} 
             >
-                📆
+                📆 Calender
             </button>
             <button 
                 className={styles.settings}
                 onClick={() => navigate('/settings')} 
             >
-                ⚙️
+                ⚙️ Settings
             </button>
         </div>
     )

@@ -94,7 +94,7 @@ function WeatherCard() {
                     </>
                 )}
             </h2>
-            <h3 className={styles.summary}>Suggested Clothing:</h3>
+            <h3 className={styles.summary}>Suggested Clothing</h3>
             <div className={styles.suggestions}>
                 {clothingSuggestions.map((item, index) => (
                     <span key={index} className={styles.suggestionItem}>
