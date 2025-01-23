@@ -4,12 +4,15 @@
     right: 0;
     display: flex;
     justify-content: center;
-    gap: 125px;
+    gap: 120px;
     padding: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 .home, .settings, .calender {
-    padding: 10px 20px;
+    padding: 10px 0px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
     background-color: #111111;
     cursor: pointer;
     border: none;
