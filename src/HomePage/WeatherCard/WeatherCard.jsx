@@ -6,8 +6,9 @@ function WeatherCard() {
     const [lon,setLon] = useState()
     const [add,setAdd] = useState('')
     const [time, setTime] = useState(new Date());
-    const [temp, setTemp] = useState()
+    const [temp, setTemp] = useState("Loading Weather Data...");
     const [weatherData, setWeatherData] = useState(null)
+    const [loadingApi, setLoadingApi] = useState(true);
 
     const getClothingSuggestions = (temp, weather) => {
         let suggestions = [];
@@ -72,6 +73,8 @@ function WeatherCard() {
             const response = await fetch(apiURL);
             const data = await response.json();
             setWeatherData(data);
+            console.log(data);
+            setLoadingApi(false);
             setTemp(Math.round(data.main.temp));
         } catch (error) {
             console.error("Error fetching weather data:", error);
@@ -81,6 +84,7 @@ function WeatherCard() {
     const clothingSuggestions = weatherData ? 
         getClothingSuggestions(temp, weatherData.weather[0].main) : [];
 
+
     return(
         <div className={styles.card}>
             <h2 className={styles.time}>📍 {add.city} {time.toLocaleTimeString([], { 
@@ -88,7 +92,7 @@ function WeatherCard() {
                 minute: '2-digit' 
             })}</h2>
             <h2 className={styles.temp}>
-                {temp}°F {weatherData && (
+                {temp} {weatherData && (
                     <>
                         {getWeatherEmoji(weatherData.weather[0].main)} {weatherData.weather[0].main}
                     </>
