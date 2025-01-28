@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 function CustomizableCard() {
     //Change to Backend__________________________________________
-    let verses = [
+    const verses = [
         "Isaiah 53:5", "John 1:14", "John 14:6", "Romans 3:23",
         "Romans 5:12", "Romans 6:23", "John 19:11", "Romans 10:9",
         "John 14:26", "Matthew 25:13", "Revelation 1:7", "Isaiah 1:18",
@@ -16,7 +16,7 @@ function CustomizableCard() {
     ]
     let verseTemp = verses[Math.floor(Math.random() * verses.length)]
     let verseOfTheDay = verseTemp.split(" ");
-    const [verse, setVerse] = useState("I can endure all these things through the power of the one who gives me strength");
+    const [verse, setVerse] = useState("Loading...");
     const bookName = verseOfTheDay[0].toLowerCase();
     const chapterNumber = verseOfTheDay[1].split(":")[0];
     const verseNumber = verseOfTheDay[1].split(":")[1];

@@ -4,23 +4,20 @@ import React, { useEffect, useState } from "react";
 function WeatherCard() {
     const [lat,setLat] = useState()
     const [lon,setLon] = useState()
-    const [add,setAdd] = useState('')
+    const [add,setAdd] = useState('Loading...')
     const [time, setTime] = useState(new Date());
     const [temp, setTemp] = useState("Loading Weather Data...");
-    const [weatherData, setWeatherData] = useState(null)
-    const [loadingApi, setLoadingApi] = useState(true);
+    const [weatherData, setWeatherData] = useState(null);
 
     const getClothingSuggestions = (temp, weather) => {
         let suggestions = [];
         
-        // Bottom clothing
         if (temp < 70) {
             suggestions.push("👖 Pants");
         } else {
             suggestions.push("🩳 Shorts");
         }
 
-        // Top clothing
         if (temp < 45) {
             suggestions.push("🧥 Heavy Coat");
             suggestions.push("👕 Long Sleeve Shirt");
@@ -32,7 +29,6 @@ function WeatherCard() {
             suggestions.push("👕 T-Shirt");
         }
 
-        // Weather specific suggestions
         if (weather?.toLowerCase().includes('rain')) {
             suggestions.push("☔ Rain Jacket");
         }
@@ -44,7 +40,7 @@ function WeatherCard() {
         const weatherLower = weather?.toLowerCase();
         if (weatherLower?.includes('rain')) return '🌧️';
         if (weatherLower?.includes('cloud')) return '☁️';
-        if (weatherLower?.includes('clear')) return '';
+        if (weatherLower?.includes('clear')) return '☀️';
         if (weatherLower?.includes('snow')) return '❄️';
         if (weatherLower?.includes('thunder')) return '⛈️';
         if (weatherLower?.includes('mist') || weatherLower?.includes('fog')) return '🌫️';
@@ -57,7 +53,7 @@ function WeatherCard() {
             setLat(pos.coords.latitude)
             setLon(pos.coords.longitude)
             const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-            fetch(url).then(res=>res.json()).then(data=>setAdd(data.address))
+            fetch(url).then(res=>res.json()).then(data=>setAdd("📍 " + data.address.city))
         })
     },[])
 
@@ -73,9 +69,7 @@ function WeatherCard() {
             const response = await fetch(apiURL);
             const data = await response.json();
             setWeatherData(data);
-            console.log(data);
-            setLoadingApi(false);
-            setTemp(Math.round(data.main.temp));
+            setTemp(Math.round(data.main.temp).toString() + "°F");
         } catch (error) {
             console.error("Error fetching weather data:", error);
         }
@@ -87,14 +81,14 @@ function WeatherCard() {
 
     return(
         <div className={styles.card}>
-            <h2 className={styles.time}>📍 {add.city} {time.toLocaleTimeString([], { 
+            <h2 className={styles.time}>{add} {time.toLocaleTimeString([], { 
                 hour: 'numeric', 
                 minute: '2-digit' 
             })}</h2>
             <h2 className={styles.temp}>
                 {temp} {weatherData && (
                     <>
-                        {getWeatherEmoji(weatherData.weather[0].main)} {weatherData.weather[0].main}
+                        {weatherData.weather[0].main} {getWeatherEmoji(weatherData.weather[0].main)}
                     </>
                 )}
             </h2>
