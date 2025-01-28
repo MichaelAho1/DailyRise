@@ -134,6 +134,7 @@
 .timeLine {
     display: flex;
     align-items: center;
+    padding-bottom: 10px;
     margin: 10px 0;
 }
 
@@ -141,7 +142,7 @@
     padding: 10px 12px;
     border: 1px solid #333333;
     border-radius: 5px;
-    background-color: #222222;
+    background-color: #2c1c20;
     color: #999999;
     cursor: pointer;
     transition: background-color 0.2s ease;

@@ -161,10 +161,10 @@ export default function ScheduleCard() {
                 <div className={styles.modalBackdrop} onClick={toggleModal}>
                     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
                         <button onClick={toggleModal} className={styles.modalButton}>×</button>
-                        <h3>✨ Add a New Task</h3>
+                        <h3>Add a New Task</h3>
                         <input 
                             type="text" 
-                            placeholder="✏️ Task name"
+                            placeholder="Task name"
                             value={newTaskName} 
                             onChange={handleInputChange}
                             className={styles.textInput} 
@@ -173,7 +173,7 @@ export default function ScheduleCard() {
                         <div className={styles.timeLine}>
                             <input 
                                 type="text" 
-                                placeholder="⏰ Time"
+                                placeholder="Time"
                                 value={newTaskTime} 
                                 onChange={handleTimeChange}
                                 className={styles.time}
@@ -220,7 +220,7 @@ export default function ScheduleCard() {
                             onClick={addTask} 
                             className={styles.addTaskButton}
                         >
-                            ✅ Add Task
+                            Add Task
                         </button>
                     </div>
                 </div>
