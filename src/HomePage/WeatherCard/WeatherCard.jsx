@@ -67,7 +67,7 @@ function WeatherCard() {
 
     async function getWeatherData(lon, lat) {
         try {
-            const key = "d3dea4785aa13ed971af500c82152c15"
+            const key = import.meta.env.VITE_WEATHER_KEY
             const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
             const response = await fetch(apiURL);
             const data = await response.json();
