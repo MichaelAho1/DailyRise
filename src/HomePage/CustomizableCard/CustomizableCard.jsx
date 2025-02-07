@@ -74,13 +74,13 @@ function CustomizableCard() {
 
     return (
         <div className={styles.card}>
-            <h1>📊 SPY 500</h1>
+            <h1>SPY 500 📊 </h1><hr></hr>
             <h2 className={styles.stock}>
                 <span className={stockData.percentChange < 0 ? styles.negative : styles.positive}>
                     {stockData.percentChange}%
                 </span> | ${stockData.todayClose.toFixed(2)}
             </h2>
-            <h1 className={styles.header}>📖 Daily Bible Verse</h1>
+            <h1 className={styles.header}>Daily Bible Verse 📖</h1>
             <h3 className={styles.quote}>
                 {verseTemp} "{verse}"
             </h3>

@@ -5,8 +5,6 @@ function CalenderSection() {
     return(
         <>
             <Selectors></Selectors>
-        
-            <Date></Date>
         </>
     )
 }

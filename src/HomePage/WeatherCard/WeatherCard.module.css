@@ -1,9 +1,11 @@
 .card {
-    max-width: 600px;
+    height: 270px;
+    max-width: 550px;
     width: 90%;
     border-radius: 10px;
-    padding: 20px;
+    padding: 25px;
     margin: 10px;
+    margin-bottom: 50px;
     text-align: center;
     justify-self: center;
     backdrop-filter: blur(10px);
@@ -12,29 +14,26 @@
     transition: transform 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
-  
-.time {
-    font-family: Arial;
-    margin: 0;
-    color: #f8eeee;
-    font-size: 1.4rem;
-    margin-bottom: 0;
-}
-  
+
 .temp {
     margin-top: 5px;
-    font-size: 1.4rem;
+    font-size: 2.0rem;
     font-family: Arial;
-    color: #ff4d6d;
-    margin-bottom: 5px;
+    color: #72c3fc;
+    margin-bottom: 8px;
     text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
 }
 
+.extraWeather {
+    color: #dbd5d5;
+    font-size: 1.1rem;
+}
+
 .summary {
-    margin-top: 15px;
+    margin-top: 5%;
     font-family: Arial;
     color: #dad2d2;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .suggestions {

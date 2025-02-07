@@ -7,11 +7,13 @@ function WeatherCard() {
     const [add,setAdd] = useState('Loading...')
     const [time, setTime] = useState(new Date());
     const [temp, setTemp] = useState("Loading Weather Data...");
+    const [feelsLikeTemp, setFeelsLikeTemp] = useState("Loading Weather Data...");
+    const [wind, setWind] = useState("Loading Weather Data...");
     const [weatherData, setWeatherData] = useState(null);
-
+    
     const getClothingSuggestions = (temp, weather) => {
         let suggestions = [];
-        
+
         if (temp < 70) {
             suggestions.push("👖 Pants");
         } else {
@@ -19,9 +21,10 @@ function WeatherCard() {
         }
 
         if (temp < 45) {
-            suggestions.push("🧥 Heavy Coat");
             suggestions.push("👕 Long Sleeve Shirt");
+            suggestions.push("🧥 Heavy Coat");
         } else if (temp < 60) {
+            suggestions.push("👕 Long Sleeve Shirt");
             suggestions.push("🧥 Light Jacket");
         } else if (temp < 75) {
             suggestions.push("👕 Long Sleeve Shirt");
@@ -32,7 +35,6 @@ function WeatherCard() {
         if (weather?.toLowerCase().includes('rain')) {
             suggestions.push("☔ Rain Jacket");
         }
-
         return suggestions;
     }
 
@@ -53,7 +55,7 @@ function WeatherCard() {
             setLat(pos.coords.latitude)
             setLon(pos.coords.longitude)
             const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-            fetch(url).then(res=>res.json()).then(data=>setAdd("📍 " + data.address.city))
+            fetch(url).then(res=>res.json()).then(data=>setAdd(data.address.city))
         })
     },[])
 
@@ -69,7 +71,10 @@ function WeatherCard() {
             const response = await fetch(apiURL);
             const data = await response.json();
             setWeatherData(data);
-            setTemp(Math.round(data.main.temp).toString() + "°F");
+            setTemp(Math.round(data.main.temp).toString());
+            setFeelsLikeTemp(Math.round(data.main.feels_like).toString());
+            setWind(data.wind.speed);
+
         } catch (error) {
             console.error("Error fetching weather data:", error);
         }
@@ -81,16 +86,15 @@ function WeatherCard() {
 
     return(
         <div className={styles.card}>
-            <h2 className={styles.time}>{add} {time.toLocaleTimeString([], { 
-                hour: 'numeric', 
-                minute: '2-digit' 
-            })}</h2>
             <h2 className={styles.temp}>
-                {temp} {weatherData && (
+                {temp}°F {weatherData && (
                     <>
-                        {weatherData.weather[0].main} {getWeatherEmoji(weatherData.weather[0].main)}
+                        {weatherData.weather[0].main} {getWeatherEmoji(weatherData.weather[0].main)}<hr></hr>
                     </>
                 )}
+            </h2>
+            <h2 className={styles.extraWeather}>
+                Feels Like {feelsLikeTemp}°F | {wind} MPH
             </h2>
             <h3 className={styles.summary}>Suggested Clothing</h3>
             <div className={styles.suggestions}>

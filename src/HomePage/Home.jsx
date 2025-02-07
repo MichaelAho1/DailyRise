@@ -1,17 +1,19 @@
 import Selectors from '../Selectors/Selectors.jsx'
-import Date from './Date/Date.jsx'
+import NewsCard from './newsCard/news.jsx'
 import WeatherCard from './WeatherCard/WeatherCard.jsx'
 import ScheduleCard from './ScheduleCard/ScheduleCard.jsx'
 import CustomizableCard from './CustomizableCard/CustomizableCard.jsx'
+import styles from './home.module.css'
 
 function Home() {
     return(
         <>
             <Selectors></Selectors>
-            <Date></Date>
-            <WeatherCard></WeatherCard>
+            <div className={styles.topSection}>
+                <WeatherCard></WeatherCard>
+                <CustomizableCard></CustomizableCard>
+            </div>
             <ScheduleCard></ScheduleCard>
-            <CustomizableCard></CustomizableCard>
         </>
     )
 }

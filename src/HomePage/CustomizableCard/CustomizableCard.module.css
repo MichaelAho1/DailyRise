@@ -1,5 +1,5 @@
 .card {
-    max-width: 600px;
+    height: 270px;
     width: 90%;
     border-radius: 10px;
     padding: 25px;
@@ -7,29 +7,44 @@
     margin-bottom: 50px;
     text-align: center;
     justify-self: center;
+    backdrop-filter: blur(10px);
     background: rgba(20, 20, 20, 0.95);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
     transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 77, 109, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+    margin-top: 5px;
+    font-size: 2.0rem;
+    font-family: Arial;
+    color: #72c3fc;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
 }
 
 .stock {
     color: #cccccc;
-    font-size: 2.2rem;
-    margin: 15px 0 25px 0;
+    font-size: 2.0rem;
+    margin-bottom: 8px;
     font-weight: 600;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.header {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 77, 109, 0.2);
+    padding-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 
 .quote {
     color: #cccccc;
     font-style: italic;
-    line-height: 1.8;
-    margin: 20px 0;
-    padding: 0 15px;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     position: relative;
 }
 
@@ -48,17 +63,6 @@
 .quote::after {
     right: -10px;
     bottom: -10px;
-}
-
-.header {
-    color: #ff4d6d;
-    font-size: 2.2rem;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    border-bottom: 2px solid rgba(255, 77, 109, 0.2);
-    padding-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 
 .negative {

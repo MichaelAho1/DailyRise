@@ -1,11 +1,10 @@
 .card {
-    max-width: 600px;
+    max-width: 1100px;
     min-height: 300px;
     width: 90%;
     border-radius: 10px;
     padding: 30px;
     margin: 10px;
-    text-align: center;
     justify-self: center;
     backdrop-filter: blur(10px);
     background: rgba(20, 20, 20, 0.95);
