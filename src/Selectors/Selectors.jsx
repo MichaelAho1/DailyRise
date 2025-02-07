@@ -1,31 +1,30 @@
-import styles from './Selectors.module.css'
-import { useNavigate } from 'react-router-dom' 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Selectors.module.css";
 
 function Selectors() {
-    const navigate = useNavigate(); 
-    
-    return(
+    const navigate = useNavigate();
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    return (
         <div className={styles.selectors}>
-            <button 
-                className={styles.home}
-                onClick={() => navigate('/home')} 
-            >
-                🏚️ Home
+            <button className={styles.about} onClick={() => navigate("/home")}>
+                MorningFlow
             </button>
-            <button 
-                className={styles.calender}
-                onClick={() => navigate('/calender')} 
-            >
-                📆 Calender
-            </button>
-            <button 
-                className={styles.settings}
-                onClick={() => navigate('/settings')} 
-            >
-                ⚙️ Settings
-            </button>
+            <div className={styles.dropdown}>
+                <button className={styles.menuButton} onClick={() => setDropdownOpen(!dropdownOpen)}>
+                    Menu
+                </button>
+                {dropdownOpen && (
+                    <div className={styles.dropdownContent}>
+                        <button onClick={() => navigate("/home")}>Home</button>
+                        <button onClick={() => navigate("/calender")}>Calendar</button>
+                        <button onClick={() => navigate("/settings")}>Settings</button>
+                    </div>
+                )}
+            </div>
         </div>
-    )
+    );
 }
 
-export default Selectors
+export default Selectors;
