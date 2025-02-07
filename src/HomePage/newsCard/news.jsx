@@ -5,7 +5,8 @@ export default function NewsCard() {
     const [news, setNews] = useState([]);
 
     async function getNews() {
-        const response = await fetch("https://newsapi.org/v2/top-headlines?country=us&apiKey=f6b1c5e7b71846ae902c483a30fe8885");
+        const key = "f6b1c5e7b71846ae902c483a30fe8885";
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey =${key}`);
         const data = await response.json();
         setNews(data.articles.slice(1, 7)); 
     }

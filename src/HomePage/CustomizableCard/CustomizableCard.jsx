@@ -42,7 +42,8 @@ function CustomizableCard() {
     }
 
     async function getStockData() {
-        const url = `https://api.twelvedata.com/time_series?symbol=SPY&interval=1day&apikey=f8ba3f2a72b349f39ab49ffb8d60e41d`;    
+        const key = "f8ba3f2a72b349f39ab49ffb8d60e41d";
+        const url = `https://api.twelvedata.com/time_series?symbol=SPY&interval=1day&apikey=${key}`;    
         const response = await fetch(url); 
         const data = await response.json(); 
         const stockInfo = extractStockInfo(data); 
