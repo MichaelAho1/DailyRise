@@ -13,6 +13,7 @@ function Home() {
                 <WeatherCard></WeatherCard>
                 <CustomizableCard></CustomizableCard>
             </div>
+            <NewsCard></NewsCard>
             <ScheduleCard></ScheduleCard>
         </>
     )

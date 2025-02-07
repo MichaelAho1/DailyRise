@@ -22,7 +22,6 @@
     flex-basis: 0; 
 }
 
-
 @media (max-width: 768px) { 
     .topSection {
         flex-direction: column; 
