@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 export default function NewsCard() {
     const [news, setNews] = useState([]);
 
-    async function getNews() {
+    async function getNews() { // will be reimplemented after storage is setup
         const key = import.meta.env.VITE_NEWS_KEY;
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey =${key}`);
-        const data = await response.json();
-        setNews(data.articles.slice(1, 7)); 
+        //const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey =${key}`);
+        //const data = await response.json();
+        //setNews(data.articles.slice(1, 7)); 
     }
 
     useEffect(() => {
