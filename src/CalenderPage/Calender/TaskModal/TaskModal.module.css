@@ -1,0 +1,95 @@
+.modal {
+    position: relative;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 77, 109, 0.2);
+    width: 300px;
+    text-align: center;
+    border: 1px solid rgba(255, 77, 109, 0.2);
+}
+
+.textInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background-color: #222222;
+    color: white;
+}
+
+.time {
+    flex: 1;
+    width: 100px;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background-color: #222222;
+    color: white;
+}
+
+.timeLine {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    margin: 10px 0;
+}
+
+.AMButton, .PMButton {
+    padding: 10px 12px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background-color: #2c1c20;
+    color: #999999;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 5px;
+}
+
+.AMButton:disabled, .PMButton:disabled {
+    background-color: #ff4d6d;
+    color: white;
+    border-color: #ff3357;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+.modalInput::placeholder {
+    color: white; 
+    opacity: 0.5; 
+}
+
+.modalButton {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.addTaskButton {
+    background-color: #ff4d6d;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+.addTaskButton:hover {
+    background-color: #ff3357;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
+}
