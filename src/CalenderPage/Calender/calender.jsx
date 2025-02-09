@@ -33,7 +33,7 @@ const TaskCalendar = () => {
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,dayGridWeek,dayGridDay'
+          right: 'dayGridMonth,dayGridWeek'
         }}
         eventContent={(eventInfo) => (
           <div
