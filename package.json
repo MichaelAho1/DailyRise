@@ -1,5 +1,6 @@
 {
   "name": "morning-project",
+  "homepage": "https://MichaelAho1.github.io/MorningFlow/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,12 +8,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "gh-pages": "^6.3.0",
     "intrinio-sdk": "^6.34.0",
     "react": "^18.3.1",
     "react-calendar": "^5.1.0",
