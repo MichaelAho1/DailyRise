@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -6,8 +6,7 @@ import styles from './Calendar.module.css';
 import TaskModal from '../TaskModal/TaskModal.jsx';
 
 const TaskCalendar = () => {
-  const [events, setEvents] = useState([
-  ]);
+  const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -27,7 +26,6 @@ const TaskCalendar = () => {
       id: Date.now().toString(),  
     };
     setEvents([...events, newEvent]);
-
     setIsModalOpen(false);  
   };
 
@@ -40,7 +38,6 @@ const TaskCalendar = () => {
       event.id === eventId ? { ...event, extended: !event.extended } : event
     ));
   };
-
   const formattedDate = selectedDate
     ? new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(selectedDate))
     : '';
