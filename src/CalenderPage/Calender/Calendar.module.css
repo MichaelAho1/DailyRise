@@ -17,35 +17,60 @@
     cursor: pointer;
   }
   
-  .eventTitle {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.eventTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+  
+.eventContent.expanded {
+  height: auto;
+  padding: 10px;
+}
+  
+@media (max-width: 768px) {
+  .calendarContainer {
+    padding: 10px;
+  }
+  .eventContent {
     width: 100%;
+    height: 50px;
   }
   
   .eventContent.expanded {
     height: auto;
-    padding: 10px;
+    padding: 15px;
   }
   
-  @media (max-width: 768px) {
-    .calendarContainer {
-        padding: 10px;
-    }
-    .eventContent {
-      width: 100%;
-      height: 50px;
-    }
-  
-    .eventContent.expanded {
-      height: auto;
-      padding: 15px;
-    }
-  
-    .eventTitle {
-      white-space: normal;
-    }
+  .eventTitle {
+    white-space: normal;
   }
+}
   
+.eventContent {
+  background-color: #2C3E50;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
   
+.eventTitle {
+  margin-right: 10px;
+}
+  
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #ff3b30; 
+}
+  
+.deleteButton:hover {
+  color: #e60000;
+}

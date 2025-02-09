@@ -7,15 +7,13 @@ import TaskModal from '../TaskModal/TaskModal.jsx';
 
 const TaskCalendar = () => {
   const [events, setEvents] = useState([
-    { title: "Sample Task", date: "2025-02-10", extended: false },
-    { title: "Sample Task", date: "2025-02-15", extended: false },
   ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateClick = (info) => {
-    setSelectedDate(info.dateStr); 
-    setIsModalOpen(true);  
+    setSelectedDate(info.dateStr);  
+    setIsModalOpen(true); 
   };
 
   const addTask = (taskName, taskTime, period) => {
@@ -25,24 +23,33 @@ const TaskCalendar = () => {
     const newEvent = {
       title: newTask,
       date: selectedDate,
-      extended: false
+      extended: false,
+      id: Date.now().toString(),  
     };
     setEvents([...events, newEvent]);
 
     setIsModalOpen(false);  
   };
 
+  const deleteTask = (taskId) => {
+    setEvents(events.filter(event => event.id !== taskId));
+  };
+
   const toggleEventExpansion = (eventId) => {
     setEvents(events.map(event => 
-      event.date === eventId ? { ...event, extended: !event.extended } : event
+      event.id === eventId ? { ...event, extended: !event.extended } : event
     ));
   };
+
+  const formattedDate = selectedDate
+    ? new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(selectedDate))
+    : '';
 
   return (
     <>
       {isModalOpen && (
         <TaskModal
-          selectedDate={selectedDate}
+          selectedDate={formattedDate}
           addTask={addTask}
           toggleModal={() => setIsModalOpen(false)}
         />
@@ -64,6 +71,15 @@ const TaskCalendar = () => {
               onClick={() => toggleEventExpansion(eventInfo.event.id)}
             >
               <span className={styles.eventTitle}>{eventInfo.event.title}</span>
+              <button
+                className={styles.deleteButton}
+                onClick={(e) => {
+                  e.stopPropagation();  
+                  deleteTask(eventInfo.event.id);
+                }}
+              >
+                ❌
+              </button>
             </div>
           )}
         />
@@ -73,3 +89,4 @@ const TaskCalendar = () => {
 };
 
 export default TaskCalendar;
+

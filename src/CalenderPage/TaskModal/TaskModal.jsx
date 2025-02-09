@@ -35,7 +35,7 @@ export default function TaskModal({ toggleModal, addTask, selectedDate }) {
         }
         
         const period = isAMButtonDisabled ? "AM" : "PM";
-        addTask(newTaskName, newTaskTime, period);  // Pass the data to parent (TaskCalendar)
+        addTask(newTaskName, newTaskTime, period);  
 
         setNewTaskName("");
         setNewTaskTime("");
@@ -48,7 +48,7 @@ export default function TaskModal({ toggleModal, addTask, selectedDate }) {
         <div className={styles.modalBackdrop} onClick={toggleModal}>
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
                 <button onClick={toggleModal} className={styles.modalButton}>×</button>
-                <h3>Add a New Task</h3>
+                <h3>Add Task for {selectedDate}</h3>
                 <input 
                     type="text" 
                     placeholder="Task name"
