@@ -12,6 +12,7 @@
     position: relative;
     padding-bottom: 80px;
     border: 1px solid rgba(255, 77, 109, 0.1);
+    scrollbar-color: rgba(255, 77, 109, 0.5) rgba(26, 26, 26, 0.95);
 } 
 .headerSection {
     display: flex;
@@ -26,35 +27,31 @@
     text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
     flex: 1;
 }
-.list {
-    justify-self: left;
-    font-size: 1.12rem;
-    font-family: Arial;
-    color: #cccccc;
-    margin: 10px;
+.listContainer {
+    margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 77, 109, 0.5) rgba(26, 26, 26, 0.95);
 }
-.listItem {
+.listContainer ol {
+    list-style: none;
+    padding: 0;
+}
+.listContainer li {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #1a1a1a;
+    margin: 10px 0;
+    padding: 15px;
     border-radius: 10px;
-    transition: transform 0.2s ease;
-}
-.checkbox {
-    align-self: left;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.listItem:hover {
-    transform: translateX(5px);
+    transition: all 0.3s ease;
+    border: 1px solid #222222;
 }
 
 .footerText {
-    justify-self: left;
     font-size: 0.84rem;
     font-family: Arial;
     color: #999999;
@@ -76,7 +73,7 @@
     width: 32px;
     height: 32px;
     font-size: 1.2rem;
-    padding: 2px 2px;
+    padding: 2px;
     border-radius: 100px;
     border: none;
     background-color: #ff4d6d;
@@ -116,25 +113,23 @@
     border: 1px solid rgba(255, 77, 109, 0.2);
 }
 
-.textInput {
-    width: 100%;
+.textInput, .time {
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #333333;
     border-radius: 5px;
     background-color: #222222;
     color: white;
 }
 
+.textInput {
+    width: 100%;
+    margin: 10px 0;
+}
+
 .time {
     flex: 1;
     width: 100px;
-    padding: 10px;
     margin: 0;
-    border: 1px solid #333333;
-    border-radius: 5px;
-    background-color: #222222;
-    color: white;
 }
 
 .timeLine {
@@ -160,11 +155,6 @@
     color: white;
     border-color: #ff3357;
     box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
-}
-
-.modalInput::placeholder {
-    color: white; 
-    opacity: 0.5; 
 }
 
 .modalButton {
@@ -201,37 +191,6 @@
     box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
 }
 
-.listContainer {
-    margin: 20px 0;
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.listContainer ol {
-    list-style: none;
-    padding: 0;
-}
-
-.listContainer li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1a1a1a;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    border: 1px solid #222222;
-}
-
-.listContainer li:hover {
-    transform: translateX(5px);
-    background: #222222;
-    border-color: #ff4d6d;
-    box-shadow: 0 0 10px rgba(255, 77, 109, 0.1);
-}
-
 .listContainer .text {
     color: #cccccc;
     font-size: 1.1rem;
@@ -254,10 +213,6 @@
 .deleteButton:hover {
     transform: scale(1.1);
     color: #ff4d6d;
-}
-
-.deleteButton:active .deleteIcon {
-    transform: scale(0.95);
 }
 
 .dropdownContainer {
@@ -323,4 +278,59 @@
     color: #ff4d6d;
     transform: translateX(5px);
 }
- 
+
+@media (max-width: 768px) {
+    .card {
+        width: 95%;
+        padding: 20px;
+        padding-bottom: 70px;
+    }
+
+    .headerSection {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .day {
+        font-size: 1.6rem;
+    }
+
+    .dropdownContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .dropdownButton {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .listContainer {
+        margin: 15px 0;
+        max-height: 250px;
+    }
+
+    .listContainer li {
+        padding: 12px;
+        margin: 8px 0;
+        font-size: 0.95rem;
+    }
+
+    .footer {
+        padding-top: 12px;
+        bottom: 15px;
+        left: 20px;
+        right: 20px;
+    }
+
+    .footerText {
+        font-size: 0.8rem;
+    }
+
+    .footerButton {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+}
