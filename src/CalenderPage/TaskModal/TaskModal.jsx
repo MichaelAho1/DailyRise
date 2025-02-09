@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './TaskModal.module.css';
 
-export default function TaskModal({ toggleModal, setTasks, tasks }) {
+export default function TaskModal({ toggleModal, addTask, selectedDate }) {
     const [newTaskName, setNewTaskName] = useState("");
     const [newTaskTime, setNewTaskTime] = useState("");
     const [isAMButtonDisabled, setIsAMButtonDisabled] = useState(false);
@@ -19,7 +19,7 @@ export default function TaskModal({ toggleModal, setTasks, tasks }) {
         }
     }
 
-    function addTask() {
+    function addTaskHandler() {
         if (newTaskName.trim() === "") {
             alert("Please enter a name for the task.");
             return;
@@ -35,9 +35,8 @@ export default function TaskModal({ toggleModal, setTasks, tasks }) {
         }
         
         const period = isAMButtonDisabled ? "AM" : "PM";
-        const newTask = `${newTaskName} at ${newTaskTime} ${period}`;
-        setTasks([...tasks, newTask]);
-        
+        addTask(newTaskName, newTaskTime, period);  // Pass the data to parent (TaskCalendar)
+
         setNewTaskName("");
         setNewTaskTime("");
         setIsAMButtonDisabled(false);
@@ -89,7 +88,7 @@ export default function TaskModal({ toggleModal, setTasks, tasks }) {
                     </button>
                 </div>
                 <button 
-                    onClick={addTask} 
+                    onClick={addTaskHandler} 
                     className={styles.addTaskButton}
                 >
                     Add Task
@@ -98,59 +97,3 @@ export default function TaskModal({ toggleModal, setTasks, tasks }) {
         </div>
     );
 }
-
-
-/**
- * <div className={styles.dropdownContainer}>
-<button 
-    onClick={toggleDropdown}
-    className={styles.dropdownButton}
->
-    📅 {selectedOption || "Select Date"}
-</button>
-{isOpen && (
-    <ul className={styles.dropdownMenu}>
-        {options.map((option) => (
-            <li 
-                key={option} 
-                onClick={() => handleOptionClick(option)}
-                className={styles.dropdownItem}
-            >
-                📅 {option}
-            </li>
-        ))}
-    </ul>
-)}
-
-    const addTaskDay = () => {
-        const date = selectedOption.split(" ");
-        setTaskDay(date[2]);
-        setTaskMonth(date[1]);
-        setWeekDay(date[0].replace(/,/g, ""));
-    }
-    
-    const getNextDays = () => {
-        const days = [];
-        const today = new Date();
-        
-        for(let i = 1; i <= 6; i++) {
-            const nextDay = new Date(today);
-            nextDay.setDate(today.getDate() + i);
-            const dayName = nextDay.toLocaleDateString('en-US', { weekday: 'long' });
-            const month = nextDay.toLocaleDateString('en-US', { month: 'long' });
-            const date = nextDay.getDate();
-            days.push(`${dayName}, ${month} ${date}`);
-        }
-        
-        return days;
-    };
-
-        const addTaskDay = () => {
-        const date = selectedOption.split(" ");
-        setTaskDay(date[2]);
-        setTaskMonth(date[1]);
-        setWeekDay(date[0].replace(/,/g, ""));
-    }
-
-        const [selectedOption, setSelectedOption] = useState(null);
- */
