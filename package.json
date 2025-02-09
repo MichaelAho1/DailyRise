@@ -1,6 +1,6 @@
 {
   "name": "morning-project",
-  "homepage": "https://MichaelAho1.github.io/MorningFlow/",
+  "homepage": "https://MichaelAho1.github.io/MorningFlow",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.15",
