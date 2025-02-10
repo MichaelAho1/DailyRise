@@ -4,12 +4,19 @@ import React, { useEffect, useState } from "react";
 export default function NewsCard() {
     const [news, setNews] = useState([]);
 
-    async function getNews() { // will be reimplemented after storage is setup
-        const key = import.meta.env.VITE_NEWS_KEY;
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${key}`);
-        const data = await response.json();
-        setNews(data.articles.slice(1, 7)); 
-    }
+    async function getNews() {
+        try {
+            const response = await fetch(`https://api.webz.io/newsApiLite?token=3f628023-0c18-4fd9-a790-0c54ddda85e0&q=stock market news`);
+            const data = await response.json();
+            
+            // Get first 6 articles that have images
+            const articles = data.posts?.filter(article => article.thread?.main_image).slice(0, 6) || [];
+            setNews(articles);
+        } catch (error) {
+            console.error('Error fetching news:', error);
+            setNews([]);
+        }
+    }   
 
     useEffect(() => {
         getNews();
@@ -21,7 +28,13 @@ export default function NewsCard() {
             <div className={styles.newsGrid}>
                 {news.map((article, index) => (
                     <div key={index} className={styles.newsItem}>
-                        {article.urlToImage && <img src={article.urlToImage} alt={article.title} />}
+                        <img 
+                            src={article.thread.main_image} 
+                            alt={article.title} 
+                            onError={(e) => {
+                                e.target.style.display = 'none';
+                            }}
+                        />
                         <div className={styles.textContent}>
                             <h2>{article.title}</h2>
                             <a href={article.url} target="_blank" rel="noopener noreferrer">Read More</a>
