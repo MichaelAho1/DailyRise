@@ -4,8 +4,10 @@
     width: 90%;
     border-radius: 10px;
     padding: 30px;
-    margin: 10px;
+    margin: 10px auto; 
+    display: block; 
     justify-self: center;
+    align-self: center;
     backdrop-filter: blur(10px);
     background: rgba(20, 20, 20, 0.95);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
