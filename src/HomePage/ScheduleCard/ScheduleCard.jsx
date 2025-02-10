@@ -97,7 +97,6 @@ export default function ScheduleCard() {
 
     const filteredTasks = tasks.filter(task => task.date === selectedOption);
     
-    // Get the next day's earliest task
     const nextDayIndex = options.indexOf(selectedOption) + 1;
     const nextDayTasks = tasks.filter(task => task.date === options[nextDayIndex]);
     const earliestTask = nextDayTasks.sort((a, b) => {
