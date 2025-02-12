@@ -13,7 +13,7 @@
 }
 
 .topSection > * {
-  min-width: 300px; 
+  min-width: 350px; 
 }
 
 .topSection > * {
@@ -29,8 +29,7 @@
     }
 
     .topSection > * {
-        margin: 10px 0;
-        width: 90%; 
+        width: 95%; 
         min-width: auto; 
     }
 }

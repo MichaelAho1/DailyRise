@@ -4,7 +4,11 @@ import { getCurrentDay } from '../Date/Date.jsx';
 
 export default function ScheduleCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState([{
+        name: "Sample Task",
+        time: "9:00 AM",
+        date: getNextDays()[0] 
+    }]);
     const [newTaskName, setNewTaskName] = useState("");
     const [newTaskTime, setNewTaskTime] = useState("");
     const [isOpen, setIsOpen] = useState(false);
