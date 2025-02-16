@@ -15,7 +15,20 @@
     padding-bottom: 80px;
     border: 1px solid rgba(255, 77, 109, 0.1);
     scrollbar-color: rgba(255, 77, 109, 0.5) rgba(26, 26, 26, 0.95);
+    animation: fadeIn 0.5s ease-out;
 } 
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .headerSection {
     display: flex;
     justify-content: space-between;
@@ -45,12 +58,53 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #1a1a1a;
+    background: rgba(26, 26, 26, 0.95);
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
-    transition: all 0.3s ease;
-    border: 1px solid #222222;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 77, 109, 0.1);
+    animation: slideIn 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.listContainer li:hover {
+    transform: translateX(5px) translateY(-2px);
+    background: rgba(34, 34, 34, 0.95);
+    border-color: #ff4d6d;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
+}
+
+.listContainer li:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #ff4d6d;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
 }
 
 .footerText {
@@ -81,14 +135,13 @@
     background-color: #ff4d6d;
     color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
 }
 
 .footerButton:hover {
-    background-color: #ff3357;
-    transform: rotate(90deg);
-    box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
 }
 
 .modalBackdrop {
@@ -102,6 +155,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .modal {
@@ -113,6 +167,18 @@
     width: 300px;
     text-align: center;
     border: 1px solid rgba(255, 77, 109, 0.2);
+    animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .textInput, .time {
@@ -186,11 +252,31 @@
     transition: all 0.3s ease;
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .addTaskButton:hover {
     background-color: #ff3357;
     box-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
+}
+
+.addTaskButton::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.addTaskButton:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .listContainer .text {
@@ -210,11 +296,13 @@
     justify-content: center;
     color: #999999;
     font-size: 1.2rem;
+    opacity: 0;
+    transform: translateX(10px);
 }
 
-.deleteButton:hover {
-    transform: scale(1.1);
-    color: #ff4d6d;
+.listContainer li:hover .deleteButton {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .dropdownContainer {
@@ -273,12 +361,36 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
 .dropdownItem:hover {
     background: rgba(255, 77, 109, 0.1);
     color: #ff4d6d;
     transform: translateX(5px);
+}
+
+.dropdownItem::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff4d6d;
+    transition: width 0.3s ease;
+}
+
+.dropdownItem:hover::after {
+    width: 100%;
+}
+
+.textInput:focus, .time:focus {
+    outline: none;
+    border-color: #ff4d6d;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+    transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
