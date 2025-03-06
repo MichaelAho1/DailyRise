@@ -6,7 +6,7 @@ export default function NewsCard() {
 
     async function getNews() {
         try {
-            const newsKey = '3f628023-0c18-4fd9-a790-0c54ddda85e0&q';
+            const newsKey = '0'//'3f628023-0c18-4fd9-a790-0c54ddda85e0&q';
             const response = await fetch(`https://api.webz.io/newsApiLite?token=${newsKey}=stock market news`);
             const data = await response.json();
             const articles = data.posts?.filter(article => article.thread?.main_image).slice(0, 6) || [];
