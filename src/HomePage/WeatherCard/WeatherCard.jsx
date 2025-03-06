@@ -7,8 +7,8 @@ function WeatherCard() {
     const [add,setAdd] = useState('Loading...')
     const [time, setTime] = useState(new Date());
     const [temp, setTemp] = useState("Loading Weather Data...");
-    const [feelsLikeTemp, setFeelsLikeTemp] = useState("Loading Weather Data...");
-    const [wind, setWind] = useState("Loading Weather Data...");
+    const [feelsLikeTemp, setFeelsLikeTemp] = useState("");
+    const [wind, setWind] = useState("");
     const [weatherData, setWeatherData] = useState(null);
     
     const getClothingSuggestions = (temp, weather) => {
@@ -72,9 +72,9 @@ function WeatherCard() {
             const response = await fetch(apiURL);
             const data = await response.json();
             setWeatherData(data);
-            setTemp(Math.round(data.main.temp).toString());
-            setFeelsLikeTemp(Math.round(data.main.feels_like).toString());
-            setWind(data.wind.speed);
+            setTemp(Math.round(data.main.temp).toString() + "°F");
+            setFeelsLikeTemp("Feels Like " + Math.round(data.main.feels_like).toString() + "°F |");
+            setWind((data.wind.speed).toString() + " MPH");
 
         } catch (error) {
             console.error("Error fetching weather data:", error);
@@ -88,14 +88,14 @@ function WeatherCard() {
     return(
         <div className={styles.card}>
             <h2 className={styles.temp}>
-                {temp}°F {weatherData && (
+                {temp} {weatherData && (
                     <>
                         {weatherData.weather[0].main} {getWeatherEmoji(weatherData.weather[0].main)}<hr></hr>
                     </>
                 )}
             </h2>
             <h2 className={styles.extraWeather}>
-                Feels Like {feelsLikeTemp}°F | {wind} MPH
+                {feelsLikeTemp} {wind}
             </h2>
             <h3 className={styles.summary}>Suggested Clothing</h3>
             <div className={styles.suggestions}>
