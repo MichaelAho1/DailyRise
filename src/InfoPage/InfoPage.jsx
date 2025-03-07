@@ -13,7 +13,6 @@ export default function InfoPage() {
                     It provides live S&P 500 updates, morning Bible verses, daily news, and the day's weather forecast—all in one place. 
                     Instead of switching between multiple apps for these updates, users can simply open MorningFlow and get everything they need at a glance.
                 </p>
-                <h1>Contact Information</h1>
             </div>
         </>
     )

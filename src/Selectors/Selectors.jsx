@@ -5,7 +5,7 @@ import styles from "./Selectors.module.css";
 function Selectors() {
     const navigate = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const temp = 0;
     return (
         <div className={styles.selectors}>
             <button className={styles.about} onClick={() => navigate("/home")}>

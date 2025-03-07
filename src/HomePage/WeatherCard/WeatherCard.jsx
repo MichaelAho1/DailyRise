@@ -72,7 +72,7 @@ function WeatherCard() {
             const response = await fetch(apiURL);
             const data = await response.json();
             setWeatherData(data);
-            setTemp(Math.round(data.main.temp).toString() + "°F");
+            setTemp(Math.round(data.main.temp));
             setFeelsLikeTemp("Feels Like " + Math.round(data.main.feels_like).toString() + "°F |");
             setWind((data.wind.speed).toString() + " MPH");
 
@@ -84,11 +84,10 @@ function WeatherCard() {
     const clothingSuggestions = weatherData ? 
         getClothingSuggestions(temp, weatherData.weather[0].main) : [];
 
-
     return(
         <div className={styles.card}>
             <h2 className={styles.temp}>
-                {temp} {weatherData && (
+                {temp}°F {weatherData && (
                     <>
                         {weatherData.weather[0].main} {getWeatherEmoji(weatherData.weather[0].main)}<hr></hr>
                     </>
