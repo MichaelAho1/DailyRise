@@ -9,7 +9,7 @@ function Selectors() {
     return (
         <div className={styles.selectors}>
             <button className={styles.about} onClick={() => navigate("/home")}>
-                MorningFlow
+                DailyRise
             </button>
             <div className={styles.dropdown}>
                 <button className={styles.menuButton} onClick={() => setDropdownOpen(!dropdownOpen)}>
