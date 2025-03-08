@@ -7,9 +7,9 @@ export default function InfoPage() {
         <>
             <Selectors></Selectors>
             <div className={styles.infoPage}>
-                <h1>About MorningFlow</h1>
+                <h1>About DailyRise</h1>
                 <p>
-                    MorningFlow was created to make morning routines quicker and easier by consolidating vital morning information. 
+                    DailyRise was created to make morning routines quicker and easier by consolidating vital morning information. 
                     It provides live S&P 500 updates, morning Bible verses, daily news, and the day's weather forecast—all in one place. 
                     Instead of switching between multiple apps for these updates, users can simply open MorningFlow and get everything they need at a glance.
                 </p>
