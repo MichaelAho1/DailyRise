@@ -19,7 +19,6 @@ function Selectors() {
                     <div className={styles.dropdownContent}>
                         <button onClick={() => navigate("/home")}>Home</button>
                         <button onClick={() => navigate("/calender")}>Calendar</button>
-                        <button onClick={() => navigate("/info")}>Info</button>
                     </div>
                 )}
             </div>
