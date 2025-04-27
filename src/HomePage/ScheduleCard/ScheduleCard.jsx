@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ScheduleCard.module.css';
 import { getCurrentDay } from '../Date/Date.jsx';
 
 export default function ScheduleCard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [tasks, setTasks] = useState([{
-        name: "Sample Task",
-        time: "9:00 AM",
-        date: getNextDays()[0] 
-    }]);
+    const [tasks, setTasks] = useState([]);
     const [newTaskName, setNewTaskName] = useState("");
     const [newTaskTime, setNewTaskTime] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -16,10 +12,9 @@ export default function ScheduleCard() {
     const [isAMButtonDisabled, setIsAMButtonDisabled] = useState(false);
     const [isPMButtonDisabled, setIsPMButtonDisabled] = useState(false);
 
-    function getNextDays() {
+    function getNextDays() { //Gets next days for generating the dropdown to select what day for a task
         const days = [];
         const today = new Date();
-        
         for (let i = 0; i <= 6; i++) {
             const nextDay = new Date(today);
             nextDay.setDate(today.getDate() + i);
@@ -28,11 +23,24 @@ export default function ScheduleCard() {
             const date = nextDay.getDate();
             days.push(`${dayName}, ${month} ${date}`);
         }
-        
         return days;
     }
-
     const options = getNextDays();
+
+    //Loads tasks from localStorage
+    useEffect(() => {
+        const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+        if (storedTasks) {
+            setTasks(storedTasks);
+        }
+    }, []);
+
+    //Saves tasks to localStorage
+    useEffect(() => {
+        if (tasks.length > 0) {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    }, [tasks]);
 
     function toggleDropdown() {
         setIsOpen(!isOpen);
@@ -55,6 +63,16 @@ export default function ScheduleCard() {
         }
     }
 
+    function convertTimeToMinutes(time) {
+        const [timeString, period] = time.split(' ');
+        const [hours, minutes] = timeString.split(':').map(Number);
+
+        let totalMinutes = (hours % 12) * 60 + minutes; 
+        if (period === 'PM') totalMinutes += 12 * 60;  
+
+        return totalMinutes;
+    }
+
     function addTask() {
         if (!selectedOption) {
             alert("Please select a Date.");
@@ -71,7 +89,11 @@ export default function ScheduleCard() {
         if (/^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(newTaskTime)) {
             const period = isAMButtonDisabled ? "AM" : "PM";
             const newTask = { name: newTaskName, time: `${newTaskTime} ${period}`, date: selectedOption };
-            setTasks([...tasks, newTask]);
+            const updatedTasks = [...tasks, newTask];
+
+            updatedTasks.sort((a, b) => convertTimeToMinutes(a.time) - convertTimeToMinutes(b.time)); //Sorts tasks by earliest to latest
+
+            setTasks(updatedTasks);
             setNewTaskName("");
             setNewTaskTime("");
             setIsAMButtonDisabled(false);
@@ -82,7 +104,8 @@ export default function ScheduleCard() {
     }
 
     function deleteTask(index) {
-        setTasks(tasks.filter((_, i) => i !== index));
+        const updatedTasks = tasks.filter((_, i) => i !== index);
+        setTasks(updatedTasks);
     }
 
     function toggleModal() {
@@ -100,21 +123,9 @@ export default function ScheduleCard() {
     }
 
     const filteredTasks = tasks.filter(task => task.date === selectedOption);
-    
     const nextDayIndex = options.indexOf(selectedOption) + 1;
     const nextDayTasks = tasks.filter(task => task.date === options[nextDayIndex]);
-    const earliestTask = nextDayTasks.sort((a, b) => {
-        const [timeA, periodA] = a.time.split(' ');
-        const [timeB, periodB] = b.time.split(' ');
-
-        const [hoursA, minutesA] = timeA.split(':').map(Number);
-        const [hoursB, minutesB] = timeB.split(':').map(Number);
-
-        const totalMinutesA = ((periodA === 'PM' && hoursA !== 12) ? hoursA + 12 : (periodA === 'AM' && hoursA === 12) ? 0 : hoursA) * 60 + minutesA;
-        const totalMinutesB = ((periodB === 'PM' && hoursB !== 12) ? hoursB + 12 : (periodB === 'AM' && hoursB === 12) ? 0 : hoursB) * 60 + minutesB;
-
-        return totalMinutesA - totalMinutesB;
-    })[0];
+    const earliestTask = nextDayTasks.sort((a, b) => convertTimeToMinutes(a.time) - convertTimeToMinutes(b.time))[0];
 
     return (
         <div className={styles.card}>
