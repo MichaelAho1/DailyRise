@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from './Calender/calender';
 import WarningModal from './WarningModal/WarningModal';
-import Navbar from '../Navbar/Navbar.jsx'
+import Selectors from '../Selectors/Selectors.jsx'
 
 const CalenderSection = () => {
     const [showWarning, setShowWarning] = useState(true);
@@ -24,7 +24,7 @@ const CalenderSection = () => {
                     onBack={handleBack}
                 />
             )}
-            <Navbar></Navbar>
+            <Selectors></Selectors>
             <Calendar />
         </>
     );
