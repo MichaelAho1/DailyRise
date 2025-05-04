@@ -7,13 +7,14 @@ function CustomizableCard() {
         "Isaiah 53:5", "John 1:14", "John 14:6", "Romans 3:23",
         "Romans 5:12", "Romans 6:23", "John 19:11", "Romans 10:9",
         "John 14:26", "Matthew 25:13", "Revelation 1:7", "Isaiah 1:18",
-        "Matthew 6:14", "Mark 11:25", "Matthew 4:4", "Exodus 15:2",
+        "Matthew 6:14", "Matthew 4:4", "Exodus 15:2",
         "Psalm 150:6", "Philippians 4:4","John 14:6", "Romans 3:23",
         "Romans 8:28", "Philippians 4:13", "Jeremiah 29:11", "Isaiah 40:31",
         "Matthew 11:28", "Psalm 46:1", "Proverbs 16:9", "Matthew 19:26",
         "Acts 1:8", "Mark 9:23", "Luke 15:7", "John 15:12",
         "Galatians 2:20", "Galatians 6:7", "Colossians 3:23", "Colossians 3:2"
     ]
+    
     let verseTemp = verses[Math.floor(Math.random() * verses.length)]
     let verseOfTheDay = verseTemp.split(" ");
     const [verse, setVerse] = useState("Loading...");
